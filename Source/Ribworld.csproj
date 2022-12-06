@@ -36,9 +36,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <CommonFiles Include="..\About\Preview.png">
-      <Link>About\Preview.png</Link>
-    </CommonFiles>
     <CommonFiles Include="..\Common\**">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </CommonFiles>
