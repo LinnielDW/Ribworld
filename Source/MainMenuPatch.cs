@@ -12,13 +12,12 @@ namespace Ribworld;
 [HarmonyPatch]
 public static class MainMenuPatch
 {
-    
     private static readonly Texture2D ribworld = ContentFinder<Texture2D>.Get("UI/HeroArt/Ribworld");
+
     static IEnumerable<MethodBase> TargetMethods()
     {
-        yield return AccessTools.Method(typeof(MainMenuDrawer),"MainMenuOnGUI");
+        yield return AccessTools.Method(typeof(MainMenuDrawer), "MainMenuOnGUI");
     }
-
 
     static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
@@ -26,7 +25,6 @@ public static class MainMenuPatch
 
         foreach (var code in codes)
         {
-            
             if (code.opcode == OpCodes.Ldsfld && (FieldInfo)code.operand == AccessTools.Field(typeof(MainMenuDrawer), "TexTitle"))
             {
                 code.operand = AccessTools.Field(typeof(MainMenuPatch), "ribworld");
@@ -36,4 +34,3 @@ public static class MainMenuPatch
         }
     }
 }
-
